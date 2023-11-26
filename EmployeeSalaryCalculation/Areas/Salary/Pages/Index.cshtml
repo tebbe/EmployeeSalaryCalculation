@@ -1,0 +1,141 @@
+﻿@page
+@model EmployeeSalaryCalculation.Areas.Salary.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    Model.Pagination.Action = "Index";
+}
+
+
+<div class="panel-heading">
+    <div class="col-md-12">
+        <h4>Employee List</h4>
+    </div>
+    <nav class="navbar">
+        <div class="col-md-5">
+            <form method="post" id="formEmployeSearch" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Employee ID</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="employeeId" class="form-control" placeholder="Search Employee by ID" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            &nbsp; <button type="button" id="findEmployee" class="btn btn-outline-secondary">Show Salary withBonus</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="highlightSalary" class="btn btn-outline-secondary">Highlight Salary</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="highlightName" class="btn btn-outline-secondary">Highlight Name</button>
+        </div>
+    </nav>
+</div>
+@if (Model.Employee.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee[0].Position)
+                </th>
+                <th class="text-end">
+                    @Html.DisplayNameFor(model => model.Employee[0].SalaryWithBonus)
+                </th>
+                <th class="text-end">
+                    @Html.DisplayNameFor(model => model.Employee[0].JoinDate)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Employee)
+            {
+                string date = item.JoinDate.ToString("dd-MM-yyyy");
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td class="name">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td class="text-end salary">
+                        @Html.DisplayFor(modelItem => item.SalaryWithBonus)
+                    </td>
+                    <td class="text-end">
+                        @date
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @* pagination partial *@
+    <partial name="_PagingPartial" model="@Model.Pagination" />
+}else{
+    <div>
+        <h4 class="text-center">No data found</h4>
+    </div>
+}
+
+
+<!--Validation Modal -->
+<div id="validationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Validation</h4>
+                <button type="button" class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please provide valid employee id.</p>
+            </div>
+           
+        </div>
+
+    </div>
+</div>
+<!-- Modal end -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // product auto complete search
+        $(function () {
+         
+            $("#findEmployee").on("click", function () {
+               // if (!isNaN($("#employeeId").val()) && $("#employeeId").val() !== "")
+                if (!isNaN($("#employeeId").val())) {
+                    var number = Number($("#employeeId").val());
+                    if (number % 1 === 0) {
+                        location.href = "?id=" + number;
+                    } else {
+                        $('#validationModal').modal('show');
+                    }
+                } else {
+                    $('#validationModal').modal('show');
+                }
+            
+            });
+
+           
+        });
+
+
+    </script>
+}

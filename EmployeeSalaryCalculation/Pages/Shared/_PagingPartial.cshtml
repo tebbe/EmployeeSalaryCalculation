@@ -1,0 +1,47 @@
+﻿@model EmployeeSalaryCalculation.Utility.Pagination
+@using EmployeeSalaryCalculation.Utility
+
+@{
+    int limit = Model.PageSize * Model.CurrentPage;
+    int dataCount = Model.Count > limit ? limit : Model.Count;
+}
+@*pagination div*@
+<div class="container">
+    <nav class="row">
+        <div class="col-9 text-center"> Showing @dataCount of @Model.Count</div>
+        <div class="col-3"></div>
+    </nav>
+    <br />
+    <nav class="row">
+        <ul class="pagination justify-content-center col-9">
+            <li class="page-item @(!Model.ShowFirst? "disabled":"")">
+                <a asp-page="./@Model.Action" asp-route-CurrentPage="1" asp-route-PageSize="@Model.PageSize" class="page-link">&laquo;</a>
+            </li>
+
+            <li class="page-item @(!Model.ShowPrevious? "disabled":"")">
+                <a asp-page="./@Model.Action" asp-route-CurrentPage="@(Model.CurrentPage -1)" asp-route-PageSize="@Model.PageSize" class="page-link">&#8249;</a>
+            </li>
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a asp-page="./@Model.Action" asp-route-CurrentPage="@i" asp-route-PageSize="@Model.PageSize" class="page-link">@i</a>
+                </li>
+            }
+            <li class="page-item  @(!Model.ShowNext? "disabled":"")">
+                <a asp-page="./@Model.Action" asp-route-CurrentPage="@(Model.CurrentPage + 1)" asp-route-PageSize="@Model.PageSize" class="page-link">&#8250;</a>
+            </li>
+
+            <li class="page-item  @(!Model.ShowLast? "disabled":"")">
+                <a asp-page="./@Model.Action" asp-route-CurrentPage="@Model.TotalPages" asp-route-PageSize="@Model.PageSize" class="page-link">&raquo;</a>
+            </li>
+        </ul>
+        <div class="col-3">
+            <form class="employeePageSize" method="get" asp-page="./@Model.Action">
+                <input asp-for="@Model.CurrentPage" value="1" hidden />
+                <select asp-for="@Model.PageSize" asp-items="PageHelper.GetPageSizeList()" class="pageSizeChange pageSizeStyle"></select>
+            </form>
+        </div>
+    </nav>
+</div>
+
+
