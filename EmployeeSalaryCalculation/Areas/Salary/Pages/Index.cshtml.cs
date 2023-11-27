@@ -32,39 +32,95 @@ namespace EmployeeSalaryCalculation.Areas.Salary.Pages
                 if (id > 0)
                 {
                   var employee= await _context.Employees.FirstOrDefaultAsync(m=>m.Id==id);
+                 
+                  
                     if(employee != null) {
-                        Employee = await _context.Employees
-                                      .Where(em => em.ReportingPersonId == employee.ReportingPersonId || em.Id== employee.ReportingPersonId)
-                                      .OrderByDescending(em => em.Id).ToArrayAsync();
+                        var child = await _context.Employees
+                                      .Where(em => em.ReportingPersonId == employee.ReportingPersonId || em.Id == employee.ReportingPersonId)
+                                      .OrderBy(em => em.ReportingPersonId).Select(em=>new Employee
+                                      {
+                                          Id = em.Id,
+                                          Name = em.Name,
+                                          Position = em.Position,
+                                          Salary = em.Salary,
+                                          SalaryWithBonus = em.SalaryWithBonus,
+                                          JoinDate = em.JoinDate,
+                                          ReportingPersonId=em.ReportingPersonId,
+                                          IsBonusAdded = em.IsBonusAdded
+                                      }).ToListAsync();
+
+                        var parent = await _context.Employees
+                                    .Where(em => em.ReportingPersonId == 0)
+                                    .OrderBy(em => em.ReportingPersonId)
+                                    .Select(em => new Employee
+                                    {
+                                        Id = em.Id,
+                                        Name = em.Name,
+                                        Position = em.Position,
+                                        Salary = em.Salary,
+                                        SalaryWithBonus = em.SalaryWithBonus,
+                                        JoinDate = em.JoinDate,
+                                        ReportingPersonId=em.ReportingPersonId,
+                                        IsBonusAdded = em.IsBonusAdded
+                                    }).ToListAsync();
+
+
+                    
+                        var combine = parent.Union(child).OrderBy(m => m.Id);
+
+                        Employee = combine.ToList();
+                        employee = null;
+                        parent.Clear();
+                        child.Clear();
                     }
 
-                    GetTotal(Employee.Count);
+                    // GetTotal(Employee.Count);
+                    CalculateBonus(Employee);
                 }
                 else
                 {
                     Employee = await _context.Employees.Skip(skip)
                       .Take(Pagination.PageSize).ToListAsync();
-                    GetTotal();
+                     GetTotal();
+
                 }
-               // CalculateBonus(Employee);
+               
             }
         }
-
+        private void GetTotal(int count = 0)
+        {
+            if (count > 0)
+                Pagination.Count = count;
+            else
+                Pagination.Count = _context.Employees.Count();
+        }
         private void CalculateBonus(IList<Employee> employee)
         {
+            DateTime today= DateTime.Now;
+            bool isLeapYear = IsLearYear(today.Year);//check leap year
+            Employee root = employee.FirstOrDefault(m => m.ReportingPersonId ==0);
+            int yearDiff = YearsDifference(root.JoinDate, today);
             foreach (var item in employee)
             {
-                if (IsLearYear(item.JoinDate.Year))
+                Employee imediateManage = employee.FirstOrDefault(m => m.Id == item.ReportingPersonId);
+                
+               
+                if (isLeapYear)
                 {
-
+                    CalculateBonusInLeapYear(item,imediateManage, yearDiff);
                 }
                 else
                 {
-
+                    CalculateBonusWithoutLeapYear(item,imediateManage, yearDiff);
                 };
             }
         }
-
+        private int YearsDifference(DateTime start, DateTime end)
+        {
+            return (end.Year - start.Year - 1) +
+                (((end.Month > start.Month) ||
+                ((end.Month == start.Month) && (end.Day >= start.Day))) ? 1 : 0);
+        }
         private bool IsLearYear(int year)
         {
             if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) return true;
@@ -72,20 +128,34 @@ namespace EmployeeSalaryCalculation.Areas.Salary.Pages
             
         }
 
-        private void CalculateBonusInLeapYear(IList<Employee> employee)
+        private void CalculateBonusInLeapYear(Employee employee, Employee imediateManage, int yearDiff)
         {
-            
-        }
-        private void CalculateBonusWithoutLeapYear(IList<Employee> employee)
-        {
-            
-        }
-        private void GetTotal(int count=0)
-        {
-            if (count > 0)
-                Pagination.Count = count;
+            employee.SalaryWithBonus = employee.Salary;
+            if (yearDiff >= (int)CompareYear.Year && employee.IsBonusAdded)
+            {
+                employee.SalaryWithBonus += (double)LeapYearBonus.Bonus;
+                if(imediateManage != null && employee.JoinDate> imediateManage.JoinDate) employee.SalaryWithBonus+= (double)LeapYearBonus.ExtraBonus;
+            }
             else
-                Pagination.Count = _context.Employees.Count();
+            {
+                employee.SalaryWithBonus += (double)LessThanFourAndLeapYear.Bonus;
+                if (imediateManage != null && employee.JoinDate > imediateManage.JoinDate) employee.SalaryWithBonus += (double)LessThanFourAndLeapYear.ExtraBonus;
+            }
         }
+        private void CalculateBonusWithoutLeapYear(Employee employee, Employee imediateManage, int yearDiff)
+        {
+            employee.SalaryWithBonus = employee.Salary;
+            if (yearDiff >= (int)CompareYear.Year && employee.IsBonusAdded)
+            {
+                employee.SalaryWithBonus += (double)NonLeapYearBonus.Bonus;
+                if (imediateManage != null && employee.JoinDate <= imediateManage.JoinDate) employee.SalaryWithBonus += (double)NonLeapYearBonus.ExtraBonus;
+            }
+            else
+            {
+                employee.SalaryWithBonus += (double)LessThanFourAndNotLeapYear.Bonus;
+                if (imediateManage != null && employee.JoinDate <= imediateManage.JoinDate) employee.SalaryWithBonus += (double)LessThanFourAndNotLeapYear.ExtraBonus;
+            }
+        }
+        
     }
 }

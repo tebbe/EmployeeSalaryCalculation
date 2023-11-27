@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeSalaryCalculation.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231126183746_Initial")]
+    [Migration("20231126224650_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -72,7 +72,7 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8677),
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1748),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2017, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Yehfes ",
@@ -80,25 +80,12 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 0,
                             Salary = 50000.900000000001,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8678)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1749)
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8685),
-                            IsBonusAdded = true,
-                            JoinDate = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "John",
-                            Position = "General Manager",
-                            ReportingPersonId = 0,
-                            Salary = 50000.900000000001,
-                            SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8686)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8689),
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1754),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2017, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Ron",
@@ -106,38 +93,38 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 1,
                             Salary = 40000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8690)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1755)
                         },
                         new
                         {
-                            Id = 4,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8693),
+                            Id = 3,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1759),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2018, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jaky",
                             Position = "Manager",
-                            ReportingPersonId = 2,
+                            ReportingPersonId = 1,
                             Salary = 40000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8693)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1760)
                         },
                         new
                         {
-                            Id = 5,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8696),
+                            Id = 4,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1764),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jack",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8697)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1765)
                         },
                         new
                         {
-                            Id = 6,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8700),
+                            Id = 5,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1769),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2017, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jane",
@@ -145,25 +132,25 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 3,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8701)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1770)
                         },
                         new
                         {
-                            Id = 7,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8703),
+                            Id = 6,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1773),
                             IsBonusAdded = false,
                             JoinDate = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Hun",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8704)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1774)
                         },
                         new
                         {
-                            Id = 8,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8707),
+                            Id = 7,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1778),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Amber",
@@ -171,38 +158,38 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 3,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8708)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1779)
                         },
                         new
                         {
-                            Id = 9,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8710),
+                            Id = 8,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1782),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Nick",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8711)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1783)
                         },
                         new
                         {
-                            Id = 10,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8714),
+                            Id = 9,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1787),
                             IsBonusAdded = false,
                             JoinDate = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Laila",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8715)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1788)
                         },
                         new
                         {
-                            Id = 11,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8717),
+                            Id = 10,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1792),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Adam",
@@ -210,12 +197,12 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 3,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8718)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1793)
                         },
                         new
                         {
-                            Id = 12,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8721),
+                            Id = 11,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1797),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Joss",
@@ -223,33 +210,33 @@ namespace EmployeeSalaryCalculation.Data.Migrations
                             ReportingPersonId = 3,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8722)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1798)
                         },
                         new
                         {
-                            Id = 13,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8724),
+                            Id = 12,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1801),
                             IsBonusAdded = false,
                             JoinDate = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Nissan",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8725)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1802)
                         },
                         new
                         {
-                            Id = 14,
-                            CreateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8728),
+                            Id = 13,
+                            CreateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1806),
                             IsBonusAdded = true,
                             JoinDate = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Adriano",
                             Position = "Office Executive",
-                            ReportingPersonId = 4,
+                            ReportingPersonId = 2,
                             Salary = 20000.5,
                             SalaryWithBonus = 0.0,
-                            UpdateDate = new DateTime(2023, 11, 27, 0, 37, 46, 719, DateTimeKind.Local).AddTicks(8728)
+                            UpdateDate = new DateTime(2023, 11, 27, 4, 46, 50, 45, DateTimeKind.Local).AddTicks(1806)
                         });
                 });
 #pragma warning restore 612, 618
